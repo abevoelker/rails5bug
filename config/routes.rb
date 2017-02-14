@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get "/foo", to: redirect { |params, req|
+    req.flash[:error] = "test"
+    # uncomment this out to make it work:
+    #req.commit_flash
+    "/bar"
+  }
+  get "/bar", to: "bar#show"
 end
